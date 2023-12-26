@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity() {
     private var butReset: Button? = null
 
     private var butAns: Button? = null
-
     private var butIgual: Button? = null
 
     private var lcd: TextView? = null

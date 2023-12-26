@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "smr.mme.calculadora.CalcSMR",
+  "variantName": "_1_2",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 1,
+      "versionName": "1.02",
+      "outputFile": "CalcSMR_1_2.apk"
+    }
+  ],
+  "elementType": "File"
+}
