@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="fondo">#6D5571</color>
+    <color name="botón1">#373347</color>
+    <color name="botón2">#8E0D47</color>
+    <color name="botón3">#292633</color>
+    <color name="botón4">#D50000</color>
+    <color name="botón5">#CCC8B4</color>
+    <color name="botón6">#FFAB00</color>
+    <color name="botón7">#B1748F</color>
+    <color name="botón8">#73A6AE</color>
+    <color name="botón9">#C14D81</color>
+    <color name="botón10">#37AFC1</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="pantalla">#7F9C9B</color>
+</resources>

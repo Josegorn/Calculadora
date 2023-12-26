@@ -1,0 +1,26 @@
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Programas/Android/Calculadora/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.332" />
+        <entry key="..\:/Programas/Android/Calculadora/app/src/main/res/drawable/ic_baseline_calculate_24.xml" value="0.22" />
+        <entry key="..\:/Programas/Android/Calculadora/app/src/main/res/drawable/ic_launcher_background.xml" value="0.332" />
+        <entry key="..\:/Programas/Android/Calculadora/app/src/main/res/font/calc.xml" value="0.39375" />
+        <entry key="..\:/Programas/Android/Calculadora/app/src/main/res/font/days_one.xml" value="0.39375" />
+        <entry key="..\:/Programas/Android/Calculadora/app/src/main/res/layout-land/activity_main.xml" value="0.4432291666666667" />
+        <entry key="..\:/Programas/Android/Calculadora/app/src/main/res/layout-v26/activity_main.xml" value="0.253125" />
+        <entry key="..\:/Programas/Android/Calculadora/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Programas/Android/Calculadora/app/src/main/res/mipmap-anydpi-v26/ic_calculadora.xml" value="0.194" />
+        <entry key="..\:/Programas/Android/Calculadora/app/src/main/res/mipmap-anydpi-v26/ic_calculadora_round.xml" value="0.194" />
+        <entry key="..\:/Programas/Android/Calculadora/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.117" />
+        <entry key="..\:/Programas/Android/Calculadora/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.117" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
