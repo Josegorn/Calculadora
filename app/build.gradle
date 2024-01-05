@@ -6,7 +6,7 @@ plugins {
 android {
     signingConfigs {
         release {
-        storeFile file('C:\\Users\\Kimi\\Keys\\CalcSMR.jks')
+            storeFile file('C:\\Users\\Kimi\\Keys\\CalcSMR.jks')
             storePassword 'sulfuro'
             keyAlias 'key_calculadora'
             keyPassword 'sulfuro'
@@ -36,7 +36,7 @@ android {
             signingConfig signingConfigs.release
             matchingFallbacks = []
             renderscriptOptimLevel 3
-            applicationIdSuffix 'CalcSMR'
+            applicationIdSuffix '.CalcSMR'
             versionNameSuffix '1.0'
         }
     }
