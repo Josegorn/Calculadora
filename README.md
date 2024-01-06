@@ -24,7 +24,7 @@ Esta calculadora especializada ha sido ideada con el propósito específico de f
 
 ## <span style="color: chocolate">Instalación</span>
 
-<pre style="font-style: italic;"><code>Lo idóneo es que la calculadora se programara para dispositivos móviles, en concreto para Android, no obstante, para los usuarios de iPhone se desarrolla una aplicación hermana en HTML, portable a cualquier sistema.
+<pre style="font-style: italic; height:auto;"><code>Lo idóneo es que la calculadora se programara para dispositivos móviles, en concreto para Android, no obstante, para los usuarios de iPhone se desarrolla una aplicación hermana en HTML, portable a cualquier sistema.
 </code></pre>
 
 Para instalar la versión **Android**, descarca el archivo **APK** el la memoria interna del terminal y mediante un emplorador de archivos (como el que está integrado en las aplicaciones de **Google**) ejecute el archivo. Se abrirá automaticamente el instalador de paquetes de **Android**. Debe asegurarse de que ha activado la instalación de **apps** desde origenes desconocidos o sino el dispositivo no le dejará instalar el paquete. 
