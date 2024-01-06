@@ -6,10 +6,10 @@ plugins {
 android {
     signingConfigs {
         release {
-            storeFile file('C:\\Users\\Kimi\\Keys\\CalcSMR.jks')
-            storePassword 'sulfuro'
+            storeFile file('Keys/CalcSMR.jks')
+            storePassword '12345678'
             keyAlias 'key_calculadora'
-            keyPassword 'sulfuro'
+            keyPassword '12345678'
         }
     }
     compileSdk 34
@@ -53,7 +53,6 @@ android {
         includeInApk true
         includeInBundle true
     }
-    compileSdk '34'
     ndkVersion '26.0.10792818'
 }
 
