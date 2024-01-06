@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html class="notranslate" translate="no">
+
+<head>
+    <title>CalcSMR Web 1.1</title>
+    <meta name="google" content="notranslate">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Russo+One&display=swap" rel="stylesheet">
+    <style>
+        #panel {
+            background-color: black;
+        }
+        
+        #rejilla {
+            padding: 5px;
+            vertical-align: super;
+            background-color: #6D5571;
+            height: 415px;
+            width: 600px;
+        }
+        
+        #pantalla {
+            height: 50px;
+            width: auto;
+            border: 4px inset #96819a;
+            background-color: #7F9C9B;
+            font-size: 40px;
+            font-family: 'Orbitron', sans-serif;
+            color: black;
+            text-align: right;
+            padding-right: 5px;
+            padding-left: 5px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            font-weight: 600;
+            text-shadow: 0px 0px 3px #0000009c;
+        }
+        
+        span {
+            letter-spacing: 4px;
+        }
+        
+        button {
+            height: 70px;
+            width: 100px;
+            border-radius: 10px;
+            border: 2px groove black;
+            font-family: 'Russo One', sans-serif;
+            text-shadow: 0px 0px 8px #0000009c;
+        }
+        
+        .b_numero {
+            background-color: #373347;
+            font-size: 40px;
+            color: lightgray;
+        }
+        
+        .b_numero:active {
+            background-color: #282533;
+            color: white;
+        }
+        
+        .b_ans {
+            background-color: #8E0D47;
+            font-size: 40px;
+            color: lightgray;
+        }
+        
+        .b_ans:active {
+            background-color: #3a071e;
+            color: white;
+        }
+        
+        .b_neg {
+            background-color: bisque;
+            font-size: 45px;
+            color: #282533
+        }
+        
+        .b_neg:active {
+            background-color: darkgrey;
+            color: black;
+        }
+        
+        .b_op {
+            background-color: #FFAB00;
+            font-size: 50px;
+            color: black;
+        }
+        
+        .b_op:active {
+            background-color: #614815;
+            color: black;
+        }
+        
+        .b_rojo {
+            background-color: #D50000;
+            font-size: 28px;
+            color: bisque;
+        }
+        
+        .b_rojo:active {
+            background-color: #4c0d0d;
+            color: white;
+        }
+        
+        .b_rosa {
+            background-color: #C14D81;
+            font-size: 35px;
+            color: black;
+        }
+        
+        .b_rosa:active {
+            background-color: #642743;
+            color: black;
+        }
+        
+        .b_azul {
+            background-color: #37AFC1;
+            font-size: 35px;
+            color: black;
+        }
+        
+        .b_azul:active {
+            background-color: #14464e;
+            color: black;
+        }
+        
+        .b_igual {
+            background-color: black;
+            font-size: 35px;
+            color: cornsilk;
+        }
+        
+        .b_igual:active {
+            background-color: white;
+            color: black;
+        }
+    </style>
+    <script>
+        const NOP = 0
+        const SUMA = 1
+        const RESTA = 2
+        const PRODUCTO = 3
+        const DIVISION = 4
+        const MODULO = 5
+        const PRODUCTO_X2 = 6
+        const PRODUCTO_X1024 = 7
+        const DIVISION_X2 = 8
+        const DIVISION_X1024 = 9
+        const NMAX = 999999999999999;
+        var num = 0;
+        var ans = 0;
+        var operador = NOP;
+        var error = false;
+
+        document.addEventListener("keyup", (e) => {
+            switch (e.key) {
+                case "0":
+                case "1":
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                case "9":
+                    boton_num(e.key);
+                    break;
+                case "+":
+                    botonOpB(SUMA);
+                    break;
+                case "-":
+                    botonOpB(RESTA);
+                    break;
+                case "*":
+                    botonOpB(PRODUCTO);
+                    break;
+                case "/":
+                    botonOpB(DIVISION);
+                    break;
+                case "%":
+                    botonOpB(MODULO);
+                    break;
+                case "Enter":
+                    botonIgual();
+                    break;
+                case "Backspace":
+                    botonDel();
+                    break;
+                case "Delete":
+                    botonReset();
+                    break;
+
+            }
+        });
+
+        function boton_num(digito) {
+            var pantalla = document.getElementById("digitos");
+
+            if (error == true) return;
+            if (num == 0) {
+                pantalla.innerHTML = digito.toString();
+                num = digito;
+            } else {
+                if (isOverflow(parseInt(pantalla.innerHTML, 10) * 10)) return;
+                num = parseInt((pantalla.innerHTML + digito.toString()), 10);
+                pantalla.innerHTML = num.toString();
+            }
+        }
+
+        function botonOpB(op) {
+            var pantalla = document.getElementById("digitos");
+            if (error == true) return;
+            ans = parseInt(pantalla.innerHTML, 10);
+            operador = op;
+            num = 0;
+        }
+
+        function botonDel() {
+            var pantalla = document.getElementById("digitos");
+            if (error == true) {
+                botonReset();
+                return;
+            }
+            if (Math.abs(num) >= 10) {
+                pantalla.innerHTML = pantalla.innerHTML.slice(0, -1);
+                num = parseInt(pantalla.innerHTML, 10);
+            } else {
+                pantalla.innerHTML = "0";
+                num = 0;
+            }
+        }
+
+        function botonReset() {
+            var pantalla = document.getElementById("digitos");
+            error = false;
+            pantalla.innerHTML = "0"
+            operador = NOP;
+            num = 0;
+            ans = 0;
+        }
+
+        function botonAns() {
+            var pantalla = document.getElementById("digitos");
+            if (error == true) return;
+            pantalla.innerHTML = ans.toString();
+            num = ans;
+        }
+
+        function botonIgual() {
+            var pantalla = document.getElementById("digitos");
+
+            if (error == true) return;
+            num = parseInt(pantalla.innerHTML, 10);
+            if (isDiv0()) {
+                pantalla.innerHTML = "ERROR: Div/0";
+                error = true;
+                return;
+            }
+            var resultado;
+            switch (operador) {
+                case SUMA:
+                    resultado = ans + num;
+                    break;
+                case RESTA:
+                    resultado = ans - num;
+                    break;
+                case PRODUCTO:
+                    resultado = ans * num;
+                    break;
+                case DIVISION:
+                    resultado = Math.trunc(ans / num);
+                    break;
+                case MODULO:
+                    resultado = ans % num;
+                    break;
+                default:
+                    resultado = num;
+            }
+            if (isOverflow(resultado)) {
+                pantalla.innerHTML = "ERROR: Overflow";
+                error = true;
+            } else pantalla.innerHTML = resultado.toString();
+        }
+
+        function botonOpM(op) {
+            var pantalla = document.getElementById("digitos");
+
+            if (error == true) return;
+            num = parseInt(pantalla.innerHTML, 10);
+            var resultado;
+            switch (op) {
+                case PRODUCTO_X2:
+                    resultado = num * 2;
+                    break;
+                case PRODUCTO_X1024:
+                    resultado = num * 1024;
+                    break;
+                case DIVISION_X2:
+                    resultado = Math.trunc(num / 2);
+                    break;
+                case DIVISION_X1024:
+                    resultado = Math.trunc(num / 1024);
+                    break;
+                default:
+                    resultado = num;
+            }
+            if (isOverflow(resultado)) {
+                pantalla.innerHTML = "ERROR: Overflow";
+                error = true;
+            } else {
+                pantalla.innerHTML = resultado.toString();
+                ans = num;
+            }
+        }
+
+        function botonSigno() {
+            var pantalla = document.getElementById("digitos");
+            if (error == true) return;
+            num = parseInt(pantalla.innerHTML, 10);
+            num = 0 - num;
+            pantalla.innerHTML = num.toString();
+        }
+
+        function isDiv0() {
+            return ((operador == DIVISION) && (num == 0));
+        }
+
+        function isOverflow(numero) {
+            return (Math.abs(numero) > NMAX);
+        }
+    </script>
+
+
+</head>
+
+
+<body id="panel">
+    <table id="rejilla">
+        <tr>
+            <td colspan="6">
+                <div id="pantalla">
+                    <span id="digitos">0</span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button id="b7" class="b_numero" onclick="boton_num(7);">7</button>
+            </td>
+            <td>
+                <button id="b8" class="b_numero" onclick="boton_num(8);">8</button>
+            </td>
+            <td>
+                <button id="b9" class="b_numero" onclick="boton_num(9);">9</button>
+            </td>
+            <td>
+                <button id="bdiv" class="b_op" onclick="botonOpB(DIVISION);">÷</button>
+            </td>
+            <td>
+                <button id="bdel" class="b_rojo" onclick="botonDel();">Del</button>
+            </td>
+            <td>
+                <button id="breset" class="b_rojo" onclick="botonReset();">Reset</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button id="b4" class="b_numero" onclick="boton_num(4);">4</button>
+            </td>
+            <td>
+                <button id="b5" class="b_numero" onclick="boton_num(5);">5</button>
+            </td>
+            <td>
+                <button id="b6" class="b_numero" onclick="boton_num(6);">6</button>
+            </td>
+            <td>
+                <button id="bmul" class="b_op" onclick="botonOpB(PRODUCTO);">x</button>
+            </td>
+            <td>
+                <button id="bx2" class="b_rosa" onclick="botonOpM(PRODUCTO_X2);">x2</button>
+            </td>
+            <td>
+                <button id="bx1024" class="b_rosa" onclick="botonOpM(PRODUCTO_X1024);">x2¹º</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button id="b1" class="b_numero" onclick="boton_num(1);">1</button>
+            </td>
+            <td>
+                <button id="b2" class="b_numero" onclick="boton_num(2);">2</button>
+            </td>
+            <td>
+                <button id="b3" class="b_numero" onclick="boton_num(3);">3</button>
+            </td>
+            <td>
+                <button id="bsub" class="b_op" onclick="botonOpB(RESTA);">–</button>
+            </td>
+            <td>
+                <button id="bdiv2" class="b_azul" onclick="botonOpM(DIVISION_X2);">÷2</button>
+            </td>
+            <td>
+                <button id="bdiv1024" class="b_azul" onclick="botonOpM(DIVISION_X1024);">÷2¹º</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button id="bans" class="b_ans" onclick="botonAns();">Ans</button>
+            </td>
+            <td>
+                <button id="b0" class="b_numero" onclick="boton_num(0);">0</button>
+            </td>
+            <td>
+                <button id="bneg" class="b_neg" onclick="botonSigno();">+/-</button>
+            </td>
+            <td>
+                <button id="bsum" class="b_op" onclick="botonOpB(SUMA);">+</button>
+            </td>
+            <td>
+                <button id="bmod" class="b_op" style="font-size: 40px" onclick="botonOpB(MODULO);">%</button>
+            </td>
+            <td>
+                <button id="bigual" class="b_igual" onclick="botonIgual();">=</button>
+            </td>
+        </tr>
+    </table>
+
+</body>
+
+</html>
